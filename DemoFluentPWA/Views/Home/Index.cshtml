@@ -1,0 +1,21 @@
+﻿@model DemoFluentPWA.ViewModel.IndexViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center" style="margin-top: 1%;">
+    <h1 class="display-4">Welcome to my PWA blog!</h1>
+    <div class="row">
+        @foreach (var item in Model.items)
+        {
+            <div class="card" style="width: 18rem; margin-left:1%;">
+                <img src="@item.Image.Url" class="card-img-top" alt="@item.Image.AltText">
+                <div class="card-body">
+                    <h5 class="card-title">@item.Title</h5>
+                    <p class="card-text">@item.Description</p>
+                    <a href="@Url.Action("ViewArticle", "Home", new { id = item._id})" class="btn btn-primary">Apri articolo</a>
+                </div>
+            </div>
+        }
+    </div>
+</div>

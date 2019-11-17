@@ -1,0 +1,15 @@
+﻿@model DemoFluentPWA.Models.ItemModel
+
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<div class="text-center" style="margin-top:1%">
+    <h2>@Model.Title</h2>
+    <hr />
+    <img src="@Model.Image.Url" />
+    <p>@Html.Raw(Model.Body)</p>
+</div>
+<div>
+    <a asp-action="Index">Torna alla lista</a>
+</div>

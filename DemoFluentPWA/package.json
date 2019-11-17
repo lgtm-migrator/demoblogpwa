@@ -1,0 +1,7 @@
+{
+  "name": "demofluentpwa",
+  "version": "1.0.0",
+  "devDependencies": {
+    "office-ui-fabric-core": "^11.0.0"
+  }
+}

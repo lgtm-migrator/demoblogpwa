@@ -1,0 +1,61 @@
+﻿@model DemoFluentPWA.Models.ItemModel
+
+@{
+    ViewData["Title"] = "CreateItem";
+}
+
+<h2>Crea articolo</h2>
+<hr />
+<div class="row">
+    <div class="col-md-5">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Payoff" class="control-label"></label>
+                <input asp-for="Payoff" class="form-control" />
+                <span asp-validation-for="Payoff" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Body" class="control-label"></label>
+                <textarea asp-for="Body" class="form-control" ></textarea>
+                <span asp-validation-for="Body" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Image.Url" class="control-label"></label>
+                <input asp-for="Image.Url" class="form-control" />
+                <span asp-validation-for="Image.Url" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Image.AltText" class="control-label"></label>
+                <input asp-for="Image.AltText" class="form-control" />
+                <span asp-validation-for="Image.AltText" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Indietro</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $(document).ready(function () {
+            $('#Body').summernote();
+        });
+    </script>
+}
