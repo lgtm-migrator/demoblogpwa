@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - DemoFluentPWA</title>
+    <title>404- DemoFluentPWA</title>
     <link rel="manifest" href="~/manifest.json">
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
@@ -15,7 +15,6 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/lib/summernote/summernote-bs4.js" type="text/javascript"></script>
     <script src="~/lib/axios/dist/axios.min.js"></script>
-    @RenderSection("Scripts", required: false)
 </head>
 <body dir="ltr">
     <header>
@@ -43,7 +42,16 @@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
-            @RenderBody()
+            <div class="text-center" style="margin-top: 1%;">
+                <h1 class="display-4">404! Page not found</h1>
+                <div class="row">
+                   
+                </div>
+                <div class="alert alert-danger" style="display: none;">
+                    <strong>Error:</strong>
+                    <ul id="errorMessage"></ul>
+                </div>
+            </div>
         </main>
     </div>
 
@@ -52,6 +60,6 @@
             &copy; 2019 - DemoFluentPWA - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
-    
+
 </body>
 </html>

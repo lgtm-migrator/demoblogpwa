@@ -1,11 +1,13 @@
-﻿using DemoFluentPWA.ServiceModel;
+﻿using DemoFluentPWA.Models;
+using DemoFluentPWA.ServiceModel;
 using MongoDB.Driver;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace DemoFluentPWA.Data
 {
-    public class MongoRepository<T> where T : class
+    public class MongoRepository<T> : IRepository<T> where T : class
     {
         private readonly IMongoCollection<T> itemCollection;
 
@@ -22,8 +24,8 @@ namespace DemoFluentPWA.Data
 
         public async Task<IEnumerable<T>> GetAllAsync()
         {
-            var findfluent = await itemCollection.FindAsync(Builders<T>.Filter.Empty).ConfigureAwait(false);
-            return findfluent.ToEnumerable();
+            var items = itemCollection.Find(Builders<T>.Filter.Empty);
+            return await Task.FromResult<IEnumerable<T>>(items.ToEnumerable()).ConfigureAwait(false);
         }
 
         public async Task<T> FindByIdAsync(string id)
@@ -31,5 +33,21 @@ namespace DemoFluentPWA.Data
             var FindAsync = await itemCollection.FindAsync(Builders<T>.Filter.Eq("_id", id));
             return await FindAsync.FirstAsync().ConfigureAwait(false);
         }
+
+        public async Task<bool> DeleteOneAsync(string id)
+        {
+            var deleteOp = await itemCollection.DeleteOneAsync(Builders<T>.Filter.Eq("_id", id)).ConfigureAwait(false);
+            return deleteOp.IsAcknowledged;
+        }
+    }
+
+    public class MongoItemRepo : MongoRepository<ItemModel>
+    {
+        public MongoItemRepo(MongoConnectionSettings settings) : base(settings) { }
+    }
+
+    public class MongoPushRepo : MongoRepository<Devices>
+    {
+        public MongoPushRepo(MongoConnectionSettings settings) : base(settings) { }
     }
 }
