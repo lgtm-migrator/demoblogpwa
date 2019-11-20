@@ -8,7 +8,7 @@
     <div class="row">
         @foreach (var item in Model.items)
         {
-            <div class="card" style="width: 18rem; margin-left:1%;">
+            <div class="card" style="width: 18rem; margin-left:5%; margin-top:10px;">
                 <img src="@item.Image.Url" class="card-img-top" alt="@item.Image.AltText">
                 <div class="card-body">
                     <h5 class="card-title">@item.Title</h5>
@@ -18,4 +18,14 @@
             </div>
         }
     </div>
+    <div class="alert alert-danger" style="display: none;">
+        <strong>Error:</strong>
+        <ul id="errorMessage"></ul>
+    </div>
 </div>
+
+<script>
+    //Vapid public key.
+    var applicationServerPublicKey = '@ViewBag.PublicKey';
+</script>
+<script src="~/js/main.js"></script>

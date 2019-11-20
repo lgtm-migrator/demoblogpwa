@@ -1,3 +1,5 @@
+using DemoFluentPWA.Data;
+using DemoFluentPWA.Models;
 using DemoFluentPWA.ServiceModel;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -20,7 +22,11 @@ namespace DemoFluentPWA
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddSingleton(Configuration.GetSection("MongoConnectionSettings").Get<MongoConnectionSettings>());
+            services.AddSingleton<IConfiguration>(Configuration);
+            var itemRepo = new MongoItemRepo(Configuration.GetSection("MongoConnectionSettings").Get<MongoConnectionSettings>());
+            var pushRepo = new MongoPushRepo(Configuration.GetSection("PushConnectionSettings").Get<MongoConnectionSettings>());
+            services.AddSingleton<MongoItemRepo>(itemRepo);
+            services.AddSingleton<MongoPushRepo>(pushRepo);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

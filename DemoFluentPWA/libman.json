@@ -15,6 +15,17 @@
         "font/summernote.ttf",
         "font/summernote.woff"
       ]
+    },
+    {
+      "provider": "unpkg",
+      "library": "axios@0.19.0",
+      "destination": "wwwroot/lib/axios/",
+      "files": [
+        "dist/axios.js",
+        "dist/axios.map",
+        "dist/axios.min.js",
+        "dist/axios.min.map"
+      ]
     }
   ]
 }
